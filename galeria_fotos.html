@@ -37,7 +37,30 @@
 .lightbox{position:fixed;inset:0;background:#fff;z-index:99;display:none;flex-direction:column}.lightbox.open{display:flex}.lb-head{height:70px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 24px;flex:none}.lb-close{border:0;background:none;font-size:26px;cursor:pointer;padding:10px}.lb-count{font-size:14px}.lb-stage{flex:1;position:relative;display:flex;align-items:center;justify-content:center;background:#fafafa;min-height:0}.lb-stage img{max-width:calc(100vw - 150px);max-height:calc(100vh - 100px);object-fit:contain}.lb-nav{position:absolute;top:50%;transform:translateY(-50%);width:46px;height:46px;border-radius:50%;border:1px solid #ddd;background:#fff;cursor:pointer;font-size:24px}.lb-prev{left:24px}.lb-next{right:24px}
 @media(max-width:900px){.cover{height:420px;grid-template-rows:206px 206px}.hero-title{margin-bottom:18px}.wrap{padding:28px 18px 60px}.topbar-inner{padding:14px 18px}.photo-section{grid-template-columns:1fr;gap:18px;padding:28px 0}.photo-section h2{font-size:22px}.gallery{gap:6px}.tour-chip{min-width:132px}.tour-chip img{width:132px;height:88px}.gallery figure,.landscape,.portrait,.wide,.tall{height:300px;min-height:0}}
 @media(max-width:600px){.hero-title h1{font-size:24px}.hero-actions{display:none}.cover{grid-template-columns:1fr 1fr;height:360px;grid-template-rows:230px 124px}.cover .main{grid-column:1/3;grid-row:1}.cover .main img{border-radius:12px 12px 0 0}.cover .tr img{border-radius:0}.cover .br img{border-radius:0 0 12px 0}.cover figure:nth-child(4),.cover figure:nth-child(5){display:none}.show-all{right:10px;bottom:10px;padding:9px 11px;font-size:12px}.title{font-size:24px}.actions{display:none}.gallery{grid-template-columns:1fr}.gallery .wide{grid-column:auto}.gallery figure,.landscape,.portrait,.wide,.tall{height:260px;min-height:0;aspect-ratio:auto;grid-column:auto;grid-row:auto}.lb-stage img{max-width:100vw;max-height:calc(100vh - 85px)}.lb-nav{width:40px;height:40px}.lb-prev{left:8px}.lb-next{right:8px}}
-  </style>
+  
+/* AJUSTES DE COMPATIBILIDADE MOBILE */
+.cover figure,
+.gallery figure,
+.show-all,
+.lb-close,
+.lb-nav {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+.lightbox {
+  overscroll-behavior: contain;
+}
+@media (max-width:600px) {
+  .lightbox { height: 100dvh; }
+  .lb-stage { min-height: 0; }
+  .lb-stage img {
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: calc(100dvh - 70px);
+  }
+}
+</style>
  </head>
  <body>
   <!-- ============================================================
@@ -51,7 +74,7 @@
   </script>
   <header class="topbar">
    <div class="topbar-inner">
-    <!-- Botão Voltar: o destino é definido pela variável PAGINA_PRINCIPAL no início do <body> -->
+    <!-- Botão Voltar: o destino é definido pela variável PAGINA_PRINCIPAL no início da página -->
     <a class="back" href="#" onclick="window.location.href=PAGINA_PRINCIPAL; return false;">
      ← Voltar
     </a>
@@ -370,8 +393,93 @@
    </div>
   </div>
   <script>
-   // Lista de fotos usada pelo lightbox. Para incluir/remover fotos na ampliação, edite este array.
-const photos=[{src:'imagens/sala.jpeg',alt:'Sala de estar'},{src:'imagens/Mesa-jantar.jpeg',alt:'Sala de estar'},{src:'imagens/Mesa de jantar.jpg',alt:'Área de jantar'},{src:'imagens/Mesa de jantar2.jpg',alt:'Área de jantar'},{src:'imagens/Quarto-casal.jpeg',alt:'Quarto 1'},{src:'imagens/quarto-casal2.jpeg',alt:'Quarto 1'},{src:'imagens/quarto-solteiro2.JPEG',alt:'Quarto 2'},{src:'imagens/Quarto-escritorio.JPEG',alt:'Quarto 2'},{src:'imagens/Banheiro.JPEG',alt:'Banheiro'},{src:'imagens/Banheiro2.JPEG',alt:'Banheiro'},{src:'imagens/Varanda.JPEG',alt:'Varanda e vista'},{src:'imagens/varanda_vista_ mar.jpeg',alt:'Varanda e vista'},{src:'imagens/vista predio.jpeg',alt:'Varanda e vista'},{src:'imagens/piscina.png',alt:'Condomínio e lazer'},{src:'imagens/piscina.jpg',alt:'Condomínio e lazer'},{src:'imagens/Piscina2.jpeg',alt:'Condomínio e lazer'},{src:'imagens/piscinaigo.jpeg',alt:'Condomínio e lazer'},{src:'imagens/parque.jpg',alt:'Condomínio e lazer'},{src:'imagens/Quadra.jpg',alt:'Condomínio e lazer'},{src:'imagens/sala de jogos.jpg',alt:'Condomínio e lazer'},{src:'imagens/portaria.jpg',alt:'Condomínio e lazer'}];let current=0;const lb=document.getElementById('lb'),img=document.getElementById('lbImg'),cnt=document.getElementById('lbCount');function render(){img.src=photos[current].src;img.alt=photos[current].alt;cnt.textContent=(current+1)+' / '+photos.length}function openLb(i){current=i;render();lb.classList.add('open');document.body.style.overflow='hidden'}function closeLb(){lb.classList.remove('open');document.body.style.overflow=''}function step(d){current=(current+d+photos.length)%photos.length;render()}document.addEventListener('keydown',e=>{if(!lb.classList.contains('open'))return;if(e.key==='Escape')closeLb();if(e.key==='ArrowLeft')step(-1);if(e.key==='ArrowRight')step(1)});
-  </script>
+const photos = [
+  {src:'imagens/sala.jpeg',alt:'Sala de estar'},
+  {src:'imagens/Mesa-jantar.jpeg',alt:'Sala de estar'},
+  {src:'imagens/Mesa de jantar.jpg',alt:'Área de jantar'},
+  {src:'imagens/Mesa de jantar2.jpg',alt:'Área de jantar'},
+  {src:'imagens/Quarto-casal.jpeg',alt:'Quarto 1'},
+  {src:'imagens/quarto-casal2.jpeg',alt:'Quarto 1'},
+  {src:'imagens/quarto-solteiro2.JPEG',alt:'Quarto 2'},
+  {src:'imagens/Quarto-escritorio.JPEG',alt:'Quarto 2'},
+  {src:'imagens/Banheiro.JPEG',alt:'Banheiro'},
+  {src:'imagens/Banheiro2.JPEG',alt:'Banheiro'},
+  {src:'imagens/Varanda.JPEG',alt:'Varanda e vista'},
+  {src:'imagens/varanda_vista_ mar.jpeg',alt:'Varanda e vista'},
+  {src:'imagens/vista predio.jpeg',alt:'Varanda e vista'},
+  {src:'imagens/piscina.png',alt:'Condomínio e lazer'},
+  {src:'imagens/piscina.jpg',alt:'Condomínio e lazer'},
+  {src:'imagens/Piscina2.jpeg',alt:'Condomínio e lazer'},
+  {src:'imagens/piscinaigo.jpeg',alt:'Condomínio e lazer'},
+  {src:'imagens/parque.jpg',alt:'Condomínio e lazer'},
+  {src:'imagens/Quadra.jpg',alt:'Condomínio e lazer'},
+  {src:'imagens/sala de jogos.jpg',alt:'Condomínio e lazer'},
+  {src:'imagens/portaria.jpg',alt:'Condomínio e lazer'}
+];
+
+let current = 0;
+let touchStartX = null;
+
+const lb = document.getElementById('lb');
+const lbImg = document.getElementById('lbImg');
+const lbCount = document.getElementById('lbCount');
+
+function renderLb() {
+  const photo = photos[current];
+  if (!photo) return;
+  lbImg.src = encodeURI(photo.src);
+  lbImg.alt = photo.alt;
+  lbCount.textContent = `${current + 1} / ${photos.length}`;
+}
+
+function openLb(index) {
+  if (!Number.isInteger(index) || index < 0 || index >= photos.length) return;
+  current = index;
+  renderLb();
+  lb.classList.add('open');
+  document.documentElement.style.overflow = 'hidden';
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLb() {
+  lb.classList.remove('open');
+  document.documentElement.style.overflow = '';
+  document.body.style.overflow = '';
+}
+
+function step(direction) {
+  current = (current + direction + photos.length) % photos.length;
+  renderLb();
+}
+
+lb.addEventListener('click', (event) => {
+  if (event.target === lb || event.target.classList.contains('lb-stage')) closeLb();
+});
+
+lb.addEventListener('touchstart', (event) => {
+  touchStartX = event.changedTouches[0].clientX;
+}, {passive:true});
+
+lb.addEventListener('touchend', (event) => {
+  if (touchStartX === null) return;
+  const delta = event.changedTouches[0].clientX - touchStartX;
+  if (Math.abs(delta) > 50) step(delta > 0 ? -1 : 1);
+  touchStartX = null;
+}, {passive:true});
+
+document.addEventListener('keydown', (event) => {
+  if (!lb.classList.contains('open')) return;
+  if (event.key === 'Escape') closeLb();
+  if (event.key === 'ArrowLeft') step(-1);
+  if (event.key === 'ArrowRight') step(1);
+});
+
+window.addEventListener('pageshow', () => {
+  if (!lb.classList.contains('open')) {
+    document.documentElement.style.overflow = '';
+    document.body.style.overflow = '';
+  }
+});
+</script>
  </body>
 </html>

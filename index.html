@@ -1810,6 +1810,15 @@ body {
   }
 }
 
+
+/* MOBILE GALLERY RELIABILITY */
+.gallery-preview-cover figure {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+.gallery-preview-all {
+  touch-action: manipulation;
+}
 </style>
 </head>
 <body>
@@ -1908,23 +1917,23 @@ body {
     </div>
 
     <div class="gallery-preview-cover">
-      <figure class="gallery-preview-main" onclick="window.location.href='galeria_fotos.html'">
+      <figure class="gallery-preview-main" onclick="window.location.assign('galeria_fotos.html')">
         <img src="imagens/piscina.png" alt="Piscina do condomínio" loading="lazy">
       </figure>
 
-      <figure onclick="window.location.href='galeria_fotos.html#sala'">
+      <figure onclick="window.location.assign('galeria_fotos.html#sala')">
         <img src="imagens/sala.jpeg" alt="Sala de estar" loading="lazy">
       </figure>
 
-      <figure class="gallery-preview-tr" onclick="window.location.href='galeria_fotos.html#condominio'">
+      <figure class="gallery-preview-tr" onclick="window.location.assign('galeria_fotos.html#condominio')">
         <img src="imagens/piscina.jpg" alt="Piscina infantil e piscina principal" loading="lazy">
       </figure>
 
-      <figure onclick="window.location.href='galeria_fotos.html#condominio'">
+      <figure onclick="window.location.assign('galeria_fotos.html#condominio')">
         <img src="imagens/parque.jpg" alt="Playground do condomínio" loading="lazy">
       </figure>
 
-      <figure class="gallery-preview-br" onclick="window.location.href='galeria_fotos.html#sala'">
+      <figure class="gallery-preview-br" onclick="window.location.assign('galeria_fotos.html#sala')">
         <img src="imagens/sala.jpeg" alt="Sala de estar" loading="lazy">
         <a class="gallery-preview-all" href="galeria_fotos.html" onclick="event.stopPropagation()">
           ▦ &nbsp; Mostrar todas as fotos
