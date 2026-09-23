@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Passeios e Gastronomia | Natal Verano Ponta Negra</title>
+<meta name="description" content="Guia de praias, passeios, restaurantes e bares recomendado pelo Natal Verano Ponta Negra." />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+<style>
+/* Visual dos cards inspirado no padrão simples do guia: branco, azul, ícone suave e link de mapa discreto. */
+:root{
+  --navy:#0c1b33;
+  --navy-light:#13284a;
+  --white:#ffffff;
+  --gray:#f4f6f9;
+  --text:#1f2937;
+  --muted:#6b7280;
+  --red:#d84b4b;
+  --green:#25D366;
+  --blue-soft:#eef5ff;
+  --shadow:0 12px 32px rgba(0,0,0,.08);
+  --radius:26px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;background:var(--gray);color:var(--text);overflow-x:hidden}
+a{text-decoration:none}
+.container{width:92%;max-width:1120px;margin:auto}
+section{padding:68px 0}
+img{max-width:100%;display:block}
+
+.hero{
+  min-height:72vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:44px 20px;
+  background:
+    linear-gradient(rgba(5,15,30,.42),rgba(5,15,30,.58)),
+    url('imagens/piscina.png') center/cover no-repeat;
+}
+.hero-content{width:100%;max-width:980px}
+.hero-logo{display:flex;justify-content:center;margin-bottom:20px}
+.hero-logo img{width:185px;max-width:65%;filter:drop-shadow(0 10px 25px rgba(0,0,0,.28));border-radius:18px}
+.hero small{display:block;color:#fff;letter-spacing:4px;font-size:.78rem;font-weight:500}
+.hero h1{color:#fff;font-size:3rem;line-height:1.15;margin:14px 0 12px}
+.hero p{color:rgba(255,255,255,.9);font-size:1.04rem;max-width:720px;margin:0 auto;line-height:1.65}
+.hero-grid{margin-top:30px;display:grid;grid-template-columns:repeat(7,1fr);gap:12px}
+.hero-card{min-height:92px;padding:16px 8px;border-radius:22px;color:#fff;background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.17);backdrop-filter:blur(9px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;transition:.25s}
+.hero-card:hover{transform:translateY(-4px);background:rgba(255,255,255,.2)}
+.hero-card i{font-size:1.25rem}
+.hero-card span{font-size:.8rem;font-weight:500}
+
+.section-title{font-size:2rem;color:var(--navy);margin-bottom:28px;display:flex;align-items:center;gap:12px;font-weight:700}
+.section-title i{color:var(--red)}
+.section-intro{color:var(--muted);line-height:1.7;max-width:820px;margin-bottom:28px}
+.route-box,.highlight-box,.host-tip,.agency-box,.contact-box{background:#fff;border-radius:30px;box-shadow:var(--shadow);padding:28px}
+.route-box{border-left:6px solid var(--red);margin-bottom:26px}
+.route-box h3,.highlight-box h3,.host-tip h3,.agency-box h3,.contact-box h3{color:var(--navy);margin-bottom:8px}
+.route-box p,.highlight-box p,.host-tip p,.agency-box p,.contact-box p{color:var(--muted);line-height:1.65}
+
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.card{background:#ffffff;border-radius:18px;padding:24px;box-shadow:0 8px 25px rgba(0,0,0,0.08);display:flex;flex-direction:column;min-height:100%;transition:.3s}
+.card:hover{transform:translateY(-4px)}
+.icon-box{width:58px;height:58px;border-radius:18px;background:#eef5ff;display:flex;align-items:center;justify-content:center;color:#2c5d8a;font-size:1.35rem;margin-bottom:18px}
+.card h3{color:#2c5d8a;font-size:20px;line-height:1.45;margin-bottom:12px;font-weight:700}
+.card p{color:#555;font-size:15px;line-height:1.6;margin-bottom:18px}
+.card ul{padding-left:18px;margin:0 0 15px}
+.card li{color:#555;font-size:14px;line-height:1.55;margin-bottom:5px}
+.badges{display:flex;flex-wrap:wrap;gap:8px;margin:4px 0 14px}
+.badge{display:inline-flex;align-items:center;gap:6px;padding:7px 10px;border-radius:999px;background:#f3f4f6;color:var(--navy);font-size:.75rem;font-weight:600}
+.badge.red{background:#fff0f0;color:#b83c3c}
+.badge.green{background:#effaf3;color:#1d7a42}
+.badge.blue{background:#eef5ff;color:#2d5f91}
+.map-btn{margin-top:auto;display:inline-flex;align-items:center;gap:8px;color:#2c5d8a;background:transparent;padding:0;border-radius:0;font-weight:600;font-size:15px;width:max-content}
+.map-btn i{color:#e63f72;font-size:.8rem}
+.map-btn:hover{color:#0c1b33;text-decoration:underline}
+
+.warning{background:#fff5f5;border:1px solid #f1c9c9;color:#9c3434;border-radius:16px;padding:13px 14px;font-size:.85rem;line-height:1.5;margin-bottom:14px}
+.highlight-box{margin-top:26px;background:linear-gradient(135deg,#ffffff,#f9fbff);border:1px solid #e8edf4}
+.highlight-grid{display:grid;grid-template-columns:1.4fr .6fr;gap:22px;align-items:center}
+.highlight-icon{width:92px;height:92px;border-radius:28px;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-size:2rem;margin-left:auto}
+
+.subsection-title{color:var(--navy);font-size:1.35rem;margin:34px 0 18px}
+.host-tip{margin-top:24px;border:1px solid #e7ebf0}
+.host-tip strong{color:var(--red)}
+
+.compact-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.compact-card{background:#fff;border-radius:20px;padding:20px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:10px}
+.compact-card i{color:var(--red);font-size:1.15rem}
+.compact-card h4{color:var(--navy);font-size:1rem}
+.compact-card p{color:var(--muted);font-size:.84rem;line-height:1.5}
+.compact-card .map-btn{padding:5px 2px;font-size:.82rem}
+
+.agency-box{border:1px dashed #cfd7e3}
+.placeholder{margin-top:15px;background:var(--gray);padding:14px;border-radius:16px;color:var(--muted);font-size:.85rem}
+.tips-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px}
+.tip{background:#fff;border-radius:18px;padding:18px;box-shadow:var(--shadow);display:flex;gap:12px;align-items:flex-start}
+.tip i{color:var(--red);margin-top:3px}
+.tip span{font-size:.88rem;line-height:1.5;color:var(--muted)}
+
+.contact-box{text-align:center;background:linear-gradient(135deg,#fff,#f7fbf8)}
+.whatsapp-btn{display:inline-flex;align-items:center;gap:10px;background:var(--green);color:#fff;padding:16px 24px;border-radius:999px;font-weight:700;margin-top:18px;box-shadow:0 10px 24px rgba(37,211,102,.25)}
+.back-top{display:flex;justify-content:center;margin-top:34px}
+.back-top a{background:rgba(12,27,51,.08);color:var(--navy);padding:11px 17px;border-radius:999px;font-size:.86rem;font-weight:600}
+footer{background:var(--navy);color:#fff;padding:46px 20px;margin-top:55px;text-align:center}
+footer h3{font-size:1.4rem;margin-bottom:7px}
+footer p{opacity:.82;font-size:.9rem;line-height:1.6}
+
+/* ── BASE (mobile first) ──────────────────────────── */
+body { font-size: 15px; }
+
+.hero { min-height: 55vh; padding: 32px 16px 24px; }
+.hero h1 { font-size: 1.65rem; margin: 10px 0 10px; }
+.hero p  { font-size: .9rem; }
+.hero-logo img { width: 120px; border-radius: 14px; }
+.hero-grid { grid-template-columns: repeat(2,1fr); gap: 9px; margin-top: 20px; }
+.hero-card { min-height: 68px; padding: 10px 6px; border-radius: 14px; }
+.hero-card i { font-size: 1rem; }
+.hero-card span { font-size: .72rem; }
+
+section { padding: 32px 0; }
+.container { width: 95%; }
+.section-title { font-size: 1.2rem; margin-bottom: 18px; }
+.section-intro { font-size: .88rem; margin-bottom: 18px; }
+
+.grid { display: flex; flex-direction: column; gap: 12px; }
+.card { padding: 16px; border-radius: 14px; }
+.card h3 { font-size: .97rem; margin-bottom: 8px; }
+.card p, .card li { font-size: .85rem; }
+.icon-box { width: 44px; height: 44px; font-size: 1.05rem; margin-bottom: 10px; border-radius: 13px; }
+
+.compact-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 10px; }
+.compact-card { padding: 14px; border-radius: 14px; gap: 7px; }
+.compact-card h4 { font-size: .88rem; }
+.compact-card p  { font-size: .78rem; }
+.compact-emoji { width: 38px; height: 38px; font-size: 19px; margin-bottom: 6px; }
+
+.tips-grid { display: grid; grid-template-columns: 1fr; gap: 10px; }
+.tip { display: flex; align-items: flex-start; gap: 10px; background: #fff; padding: 12px 14px; border-radius: 13px; box-shadow: 0 4px 12px rgba(0,0,0,.06); font-size: .86rem; line-height: 1.5; color: var(--text); }
+.tip i { color: var(--red); margin-top: 2px; flex-shrink: 0; }
+
+.highlight-box { padding: 18px; }
+.highlight-grid { grid-template-columns: 1fr; }
+.highlight-icon { display: none; }
+
+.route-box { padding: 16px; margin-bottom: 14px; }
+.route-box h3 { font-size: .95rem; }
+.host-tip { padding: 16px; }
+
+.contact-box, .agency-box { padding: 18px; border-radius: 20px; }
+.contact-box h3, .agency-box h3 { font-size: 1rem; }
+
+.badge { font-size: .68rem; padding: 5px 8px; }
+.warning { font-size: .81rem; }
+.map-btn { font-size: .82rem; margin-top: 8px; }
+
+.whatsapp-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  margin-top: 14px; background: var(--green); color: #fff;
+  padding: 11px 22px; border-radius: 30px; font-weight: 600; font-size: .88rem;
+}
+.whatsapp-btn i { font-size: 1.1rem; }
+
+.back-top { margin-top: 16px; text-align: center; }
+.back-top a {
+  display: inline-block; padding: 9px 22px;
+  background: var(--navy); color: #fff;
+  border-radius: 30px; font-size: .78rem; font-weight: 600;
+}
+
+/* ── TABLET (580px+) ──────────────────────────────── */
+@media(min-width: 580px) {
+  .grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 16px; }
+  .hero-grid { grid-template-columns: repeat(4,1fr); }
+  .hero h1 { font-size: 2.1rem; }
+  .tips-grid { grid-template-columns: repeat(2,1fr); }
+}
+
+/* ── DESKTOP (960px+) ─────────────────────────────── */
+@media(min-width: 960px) {
+  body { font-size: 16px; }
+  .hero { min-height: 72vh; padding: 44px 20px; }
+  .hero h1 { font-size: 3rem; }
+  .hero-logo img { width: 185px; }
+  .hero-grid { grid-template-columns: repeat(8,1fr); gap: 12px; }
+  .hero-card { min-height: 92px; padding: 16px 8px; }
+  .hero-card i { font-size: 1.25rem; }
+  .hero-card span { font-size: .8rem; }
+  section { padding: 68px 0; }
+  .grid { grid-template-columns: repeat(4,1fr); gap: 22px; }
+  .compact-grid { grid-template-columns: repeat(4,1fr); gap: 16px; }
+  .tips-grid { grid-template-columns: repeat(3,1fr); }
+  .highlight-grid { grid-template-columns: 1.4fr .6fr; }
+  .highlight-icon { display: flex; }
+  .back-top a { background: none; color: var(--navy); border: 1px solid #ccd; }
+}
+
+
+
+
+/* Selo discreto de recomendação */
+.recomendacao-verano{
+  display:inline-flex;
+  align-items:center;
+  gap:5px;
+  width:max-content;
+  margin-bottom:10px;
+  padding:6px 11px;
+  border-radius:999px;
+  background:#effaf3;
+  color:#2f8a50;
+  font-size:.72rem;
+  font-weight:700;
+}
+.recomendacao-verano i{
+  color:#e5b82e;
+  font-size:.72rem;
+}
+
+
+/* Otimização de desempenho para celular */
+@media(max-width:579px){
+  .hero-card{
+    backdrop-filter:none !important;
+    -webkit-backdrop-filter:none !important;
+  }
+  .card,.compact-card,.tip,.route-box,.highlight-box,.host-tip,.agency-box,.contact-box{
+    box-shadow:0 4px 12px rgba(0,0,0,.06);
+  }
+}
+@supports (content-visibility:auto){
+  section:not(.hero), footer{
+    content-visibility:auto;
+    contain-intrinsic-size:1px 650px;
+  }
+}
+
+</style>
+</head>
+<body>
+
+<section class="hero" id="topo">
+  <div class="hero-content">
+    <div class="hero-logo"><img src="imagens/logo.png" alt="Natal Verano Ponta Negra"></div>
+    <small>NATAL VERANO PONTA NEGRA</small>
+    <h1>Passeios e Gastronomia</h1>
+    <p>Nossas dicas para aproveitar Natal e o litoral do Rio Grande do Norte.</p>
+    <div class="hero-grid">
+      <a href="#sul" class="hero-card"><i class="fa-solid fa-route"></i><span>Litoral Sul</span></a>
+      <a href="#pipa" class="hero-card"><i class="fa-solid fa-sun"></i><span>Pipa</span></a>
+      <a href="#norte" class="hero-card"><i class="fa-solid fa-water"></i><span>Litoral Norte</span></a>
+      <a href="#gostoso" class="hero-card"><i class="fa-solid fa-wind"></i><span>S. M. Gostoso</span></a>
+      <a href="#passeios" class="hero-card"><i class="fa-solid fa-compass"></i><span>Passeios</span></a>
+      <a href="#compras" class="hero-card"><i class="fa-solid fa-bag-shopping"></i><span>Compras</span></a>
+      <a href="#restaurantes" class="hero-card"><i class="fa-solid fa-utensils"></i><span>Restaurantes</span></a>
+      <a href="#bares" class="hero-card"><i class="fa-solid fa-martini-glass"></i><span>Bares</span></a>
+      <!-- Acesso ao site público principal -->
+      <a href="index.html" class="hero-card"><i class="fa-solid fa-house"></i><span>Conheça nosso Site</span></a>
+    </div>
+  </div>
+</section>
+
+<section id="sul">
+  <div class="container">
+    <h2 class="section-title"><i class="fa-solid fa-route"></i>Litoral Sul</h2>
+    <div class="route-box">
+      <h3>Rota do Sol — RN-063</h3>
+      <p>Estando de carro, é possível conhecer várias praias seguindo praticamente a mesma rota pelo litoral sul.</p>
+    </div>
+    <div class="grid">
+      <div class="card"><h3>Praia de Cotovelo</h3><ul><li>Falésias</li><li>Barramares</li></ul><a class="map-btn" target="_blank" href="https://maps.google.com/?q=Praia+de+Cotovelo+RN"><i class="fa-solid fa-location-dot"></i>Abrir no Maps</a></div>
+      <div class="card"><h3>Praia de Pirangi</h3><ul><li>Maior Cajueiro do Mundo</li><li>Prainha de Pirangi</li><li>Feira de artesanato</li></ul><a class="map-btn" target="_blank" href="https://maps.google.com/?q=Praia+de+Pirangi+RN"><i class="fa-solid fa-location-dot"></i>Abrir no Maps</a></div>
+      <div class="card"><h3>Praia de Búzios</h3><div class="badges"><span class="badge red">⚠️ Atenção</span></div><div class="warning"><strong>Mar bravo.</strong> Recomendamos aproveitar principalmente a estrutura das barracas e ter cuidado para banho.</div><a class="map-btn" target="_blank" href="https://maps.google.com/?q=Praia+de+Buzios+RN"><i class="fa-solid fa-location-dot"></i>Abrir no Maps</a></div>
+      <div class="card"><h3>Mirante de Tabatinga</h3><div class="badges"><span class="badge blue">🐬 Golfinhos</span></div><p>Destaque para o Mirante dos Golfinhos e a vista panorâmica da região.</p><a class="map-btn" target="_blank" href="https://maps.google.com/?q=Mirante+dos+Golfinhos+Tabatinga+RN"><i class="fa-solid fa-location-dot"></i>Abrir no Maps</a></div>
+      <div class="card"><h3>Praia de Camurupim</h3><p>Sugestão: Restaurante/Pousada Tartaruga.</p><a class="map-btn" target="_blank" href="https://maps.google.com/?q=Praia+de+Camurupim+RN"><i class="fa-solid fa-location-dot"></i>Abrir no Maps</a></div>
+      <div class="card"><h3>Lagoa de Arituba</h3><p>Fica próxima a Camurupim e é uma ótima opção para banho de lagoa.</p><a class="map-btn" target="_blank" href="https://maps.google.com/?q=Lagoa+de+Arituba+RN"><i class="fa-solid fa-location-dot"></i>Abrir no Maps</a></div>
+      <div class="card"><h3>Praia de Barreta</h3><ul><li>Camarutaba</li><li>ServClub / parque aquático</li></ul><a class="map-btn" target="_blank" href="https://maps.google.com/?q=Praia+de+Barreta+RN"><i class="fa-solid fa-location-dot"></i>Abrir no Maps</a></div>
+    </div>
+
+    <div class="highlight-box">
+      <div class="highlight-grid">
+        <div><h3>Ponta do Pirambu — Tibau do Sul</h3><p>Excelente opção no caminho para Pipa, com estrutura para passar o dia.</p><a class="map-btn" target="_blank" href="https://maps.google.com/?q=Ponta+do+Pirambu+Tibau+do+Sul+RN"><i class="fa-solid fa-location-dot"></i>Ver localização</a></div>
+        <div class="highlight-icon"><i class="fa-solid fa-star"></i></div>
+      </div>
+    </div>
+    <div class="back-top"><a href="#topo">↑ Voltar ao topo</a></div>
+  </div>
+</section>
+
+<section id="pipa">
+  <div class="container">
+    <h2 class="section-title"><i class="fa-solid fa-sun"></i>Praia da Pipa</h2>
+    <p class="section-intro">Saindo de Natal, siga pela BR-101 sentido João Pessoa e acesse a região por Goianinha.</p>
+    <div class="grid">
+      <div class="card"><h3>Praia do Madeiro</h3><div class="badges"><span class="badge blue">🐬 Golfinhos</span></div><p>Praia conhecida pela presença de golfinhos.</p><a class="map-btn" target="_blank" href="https://maps.google.com/?q=Praia+do+Madeiro+Pipa+RN"><i class="fa-solid fa-location-dot"></i>Abrir no Maps</a></div>
+      <div class="card"><h3>Centro de Pipa</h3><ul><li>Restaurantes</li><li>Comércio</li><li>Artesanato</li><li>Vida noturna</li></ul><a class="map-btn" target="_blank" href="https://maps.google.com/?q=Centro+de+Pipa+RN"><i class="fa-solid fa-location-dot"></i>Abrir no Maps</a></div>
+      <div class="card"><h3>Mirante do Chapadão</h3><ul><li>Vista panorâmica</li><li>Falésias</li></ul><a class="map-btn" target="_blank" href="https://maps.google.com/?q=Chapadao+Pipa+RN"><i class="fa-solid fa-location-dot"></i>Abrir no Maps</a></div>
+      <div class="card"><h3>Piscinas do Amô</h3><p>Região do Chapadão.</p><a class="map-btn" target="_blank" href="https://maps.google.com/?q=Piscinas+do+Amo+Pipa+RN"><i class="fa-solid fa-location-dot"></i>Abrir no Maps</a></div>
+      <div class="card"><h3>Pôr do Sol</h3><div class="badges"><span class="badge blue">🌅 Pôr do sol</span></div><p>Sugestão: Pipa Beach Club.</p><a class="map-btn" target="_blank" href="https://maps.google.com/?q=Pipa+Beach+Club+RN"><i class="fa-solid fa-location-dot"></i>Abrir no Maps</a></div>
+    </div>
+    <div class="host-tip"><h3>Sugestão Natal Verano</h3><p><strong>Reserve um dia inteiro</strong> para conhecer Pipa com tranquilidade.</p></div>
+    <div class="back-top"><a href="#topo">↑ Voltar ao topo</a></div>
+  </div>
+</section>
+
+<section id="norte">
+  <div class="container">
+    <h2 class="section-title"><i class="fa-solid fa-water"></i>Litoral Norte</h2>
+    <div class="grid">
+      <div class="card"><h3>Genipabu</h3><ul><li>Dunas</li><li>Lagoa de Genipabu</li><li>Passeio de buggy</li><li>Pôr do Sol</li></ul><a class="map-btn" target="_blank" href="https://maps.google.com/?q=Genipabu+RN"><i class="fa-solid fa-location-dot"></i>Abrir no Maps</a></div>
+      <div class="card"><h3>Praia de Zumbi / Punaú</h3><p>Sugestão: Punaú.</p><a class="map-btn" target="_blank" href="https://maps.google.com/?q=Punau+RN"><i class="fa-solid fa-location-dot"></i>Abrir no Maps</a></div>
+      <div class="card"><h3>Maracajaú</h3><div class="badges"><span class="badge blue">🤿 Mergulho</span></div><ul><li>Parrachos</li><li>Catamarã</li><li>Mergulho com máscara/snorkel</li><li>Mergulho com cilindro</li><li>Anéis de Maracajaú — restaurante com área de lazer, excelente opção para aproveitar o dia.</li></ul><a class="map-btn" target="_blank" href="https://maps.google.com/?q=Maracajau+RN"><i class="fa-solid fa-location-dot"></i>Abrir no Maps</a></div>
+      <div class="card"><h3>Rio do Fogo</h3><div class="badges"><span class="badge blue">🤿 Mergulho</span></div><p>Opção no litoral norte para aproveitar o mar e passeios de mergulho.</p><a class="map-btn" target="_blank" href="https://maps.google.com/?q=Rio+do+Fogo+RN"><i class="fa-solid fa-location-dot"></i>Abrir no Maps</a></div>
+      <div class="card"><h3>Tao Paradise</h3><p>Opção de passeio no litoral norte.</p><a class="map-btn" target="_blank" href="https://maps.google.com/?q=Tao+Paradise+RN"><i class="fa-solid fa-location-dot"></i>Abrir no Maps</a></div>
+      <div class="card"><h3>São Miguel do Gostoso</h3><p>Destino do litoral norte para incluir no roteiro de praias e passeios.</p><a class="map-btn" target="_blank" href="https://maps.google.com/?q=Sao+Miguel+do+Gostoso+RN"><i class="fa-solid fa-location-dot"></i>Abrir no Maps</a></div>
+      <div class="card"><h3>Passeio de Quadriciclo</h3><p>Uma opção de aventura para conhecer paisagens do litoral.</p><a class="map-btn" target="_blank" href="https://maps.google.com/?q=Passeio+de+quadriciclo+Natal+RN"><i class="fa-solid fa-location-dot"></i>Abrir no Maps</a></div>
+    </div>
+    <div class="back-top"><a href="#topo">↑ Voltar ao topo</a></div>
+  </div>
+</section>
+
+
+<section id="gostoso">
+  <div class="container">
+    <h2 class="section-title"><i class="fa-solid fa-wind"></i>São Miguel do Gostoso</h2>
+    <p class="section-intro">Vila encantadora no litoral norte, famosa pelos ventos constantes ideais para kitesurf e windsurf, praias desertas e um clima bucólico e tranquilo.</p>
+    <div class="grid">
+      <div class="card"><h3>Ponta do Santo Cristo</h3><div class="badges"><span class="badge blue">🪁 Kitesurf</span><span class="badge blue">🏄 Windsurf</span></div><p>Ponto mais famoso de Gostoso. Ventos constantes e fortes fazem deste local um dos melhores destinos de kitesurf do Brasil. Pôr do sol espetacular.</p><a class="map-btn" target="_blank" href="https://maps.google.com/?q=Ponta+do+Santo+Cristo+Sao+Miguel+do+Gostoso+RN"><i class="fa-solid fa-location-dot"></i>Abrir no Maps</a></div>
+      <div class="card"><h3>Praia de Tourinhos</h3><p>A 8 km de Gostoso. Dunas petrificadas há mais de 2.500 anos e a famosa fenda que, na maré alta, jorra água como um gêiser — o "suspiro da baleia". Pôr do sol deslumbrante.</p><a class="map-btn" target="_blank" href="https://maps.google.com/?q=Praia+de+Tourinhos+Sao+Miguel+do+Gostoso+RN"><i class="fa-solid fa-location-dot"></i>Abrir no Maps</a></div>
+      <div class="card"><h3>Praias da Orla</h3><ul><li>Praia da Xêpa</li><li>Praia de Maceió</li><li>Praia do Cardeiro</li></ul><p>Faixas de areia largas, quase desertas e com águas mornas. Perfeitas para relaxar com calma e tranquilidade.</p><a class="map-btn" target="_blank" href="https://maps.google.com/?q=Praia+da+Xepa+Sao+Miguel+do+Gostoso+RN"><i class="fa-solid fa-location-dot"></i>Abrir no Maps</a></div>
+      <div class="card"><h3>Galinhos</h3><div class="badges"><span class="badge blue">⛵ Passeio de barco</span></div><p>Vila isolada por dunas e mar, acessível de barco. Ruas de paralelepípedo, charrete, mangue, salina e a impressionante Duna do Capim. Uma experiência única.</p><a class="map-btn" target="_blank" href="https://maps.google.com/?q=Galinhos+RN"><i class="fa-solid fa-location-dot"></i>Abrir no Maps</a></div>
+    </div>
+    <div class="host-tip"><h3>Sugestão Natal Verano</h3><p><strong>Reserve um dia inteiro</strong> para Gostoso. Se possível, fique até o pôr do sol na Ponta do Santo Cristo — é um dos mais bonitos do litoral norte.</p></div>
+  </div>
+</section>
+
+<section id="passeios">
+  <div class="container">
+    <h2 class="section-title"><i class="fa-solid fa-compass"></i>Passeios em Natal e Região</h2>
+    <div class="compact-grid">
+      <div class="compact-card"><h4>Passeio de Buggy</h4><p>Litoral norte, litoral sul ou região de Pipa.</p><a class="map-btn" target="_blank" href="https://maps.google.com/?q=Passeio+de+buggy+Natal+RN"><i class="fa-solid fa-location-dot"></i>Abrir no Maps</a></div>
+      <div class="compact-card"><h4>Forte dos Reis Magos</h4><p>Um dos principais pontos históricos de Natal.</p><a class="map-btn" target="_blank" href="https://maps.google.com/?q=Forte+dos+Reis+Magos+Natal+RN"><i class="fa-solid fa-location-dot"></i>Abrir no Maps</a></div>
+      <div class="compact-card"><h4>Quadriciclo</h4><p>Passeio de aventura pelo litoral.</p><a class="map-btn" target="_blank" href="https://maps.google.com/?q=Quadriciclo+Natal+RN"><i class="fa-solid fa-location-dot"></i>Abrir no Maps</a></div>
+      <div class="compact-card"><h4>Jangada em Ponta Negra</h4><p>Passeio tradicional saindo da praia.</p><a class="map-btn" target="_blank" href="https://maps.google.com/?q=Jangada+Ponta+Negra+Natal+RN"><i class="fa-solid fa-location-dot"></i>Abrir no Maps</a></div>
+    </div>
+    <div class="back-top"><a href="#topo">↑ Voltar ao topo</a></div>
+  </div>
+</section>
+
+<section id="compras">
+  <div class="container">
+    <h2 class="section-title"><i class="fa-solid fa-bag-shopping"></i>Shoppings e Feiras de Artesanato</h2>
+    <p class="section-intro">Opções para compras, artesanato, alimentação e cultura em Natal.</p>
+    <div class="compact-grid">
+      <div class="compact-card"><h4>Centro de Turismo</h4><p>Artesanato e cultura.</p><a class="map-btn" target="_blank" href="https://maps.google.com/?q=Centro+de+Turismo+Natal+RN"><i class="fa-solid fa-location-dot"></i>Abrir no Maps</a></div>
+      <div class="compact-card"><h4>Praia Shopping</h4><p>Shopping em Ponta Negra.</p><a class="map-btn" target="_blank" href="https://maps.google.com/?q=Praia+Shopping+Natal+RN"><i class="fa-solid fa-location-dot"></i>Abrir no Maps</a></div>
+      <div class="compact-card"><h4>Natal Shopping</h4><p>Compras, alimentação e serviços.</p><a class="map-btn" target="_blank" href="https://maps.google.com/?q=Natal+Shopping+Natal+RN"><i class="fa-solid fa-location-dot"></i>Abrir no Maps</a></div>
+      <div class="compact-card"><h4>Midway Mall</h4><p>Um dos principais shoppings da cidade.</p><a class="map-btn" target="_blank" href="https://maps.google.com/?q=Midway+Mall+Natal+RN"><i class="fa-solid fa-location-dot"></i>Abrir no Maps</a></div>
+      <div class="compact-card"><h4>Vilarte</h4><p>Artesanato em Ponta Negra.</p><a class="map-btn" target="_blank" href="https://maps.google.com/?q=Vilarte+Ponta+Negra+Natal+RN"><i class="fa-solid fa-location-dot"></i>Abrir no Maps</a></div>
+    </div>
+    <div class="highlight-box"><div class="recomendacao-verano"><i class="fa-solid fa-star"></i> Recomendação Natal Verano</div><h3>Rua do Praia Shopping</h3><p>Região com várias opções de restaurantes e entretenimento em Ponta Negra.</p><a class="map-btn" target="_blank" href="https://maps.google.com/?q=Praia+Shopping+Ponta+Negra+Natal+RN"><i class="fa-solid fa-location-dot"></i>Ver localização</a></div>
+    <div class="back-top"><a href="#topo">↑ Voltar ao topo</a></div>
+  </div>
+</section>
+
+<section id="restaurantes">
+  <div class="container">
+    <h2 class="section-title"><i class="fa-solid fa-utensils"></i>Restaurantes — Ponta Negra</h2>
+    <div class="grid">
+      <div class="card"><h3>Camarões Potiguar</h3><div class="badges"><span class="badge green">⭐ Recomendação Natal Verano</span></div><p>Uma das principais recomendações para frutos do mar.</p><a class="map-btn" target="_blank" href="https://maps.google.com/?q=Camaroes+Potiguar+Natal+RN"><i class="fa-solid fa-location-dot"></i>Abrir no Maps</a></div>
+      <div class="card"><h3>Camarões Ponta Negra</h3><a class="map-btn" target="_blank" href="https://maps.google.com/?q=Camaroes+Ponta+Negra+Natal+RN"><i class="fa-solid fa-location-dot"></i>Abrir no Maps</a></div>
+      <div class="card"><h3>Casa de Taipa</h3><p>Tapiocaria e comida regional.</p><a class="map-btn" target="_blank" href="https://maps.google.com/?q=Casa+de+Taipa+Natal+RN"><i class="fa-solid fa-location-dot"></i>Abrir no Maps</a></div>
+      <div class="card"><h3>Pinga Fogo</h3><p>Self-service e sushi bar.</p><a class="map-btn" target="_blank" href="https://maps.google.com/?q=Pinga+Fogo+Natal+RN"><i class="fa-solid fa-location-dot"></i>Abrir no Maps</a></div>
+      <div class="card"><h3>Farofa D'Água</h3><p>Próximo à região de artesanato.</p><a class="map-btn" target="_blank" href="https://maps.google.com/?q=Farofa+Dagua+Natal+RN"><i class="fa-solid fa-location-dot"></i>Abrir no Maps</a></div>
+      <div class="card"><h3>Mangai</h3><div class="badges"><span class="badge green">👨‍👩‍👧 Área infantil</span></div><a class="map-btn" target="_blank" href="https://maps.google.com/?q=Mangai+Natal+RN"><i class="fa-solid fa-location-dot"></i>Abrir no Maps</a></div>
+      <div class="card"><h3>Açaí do Joca</h3><a class="map-btn" target="_blank" href="https://maps.google.com/?q=Acai+do+Joca+Ponta+Negra+Natal+RN"><i class="fa-solid fa-location-dot"></i>Abrir no Maps</a></div>
+    </div>
+
+    <h3 class="subsection-title">Outras regiões</h3>
+    <div class="grid">
+      <div class="card"><h3>NAU Frutos do Mar</h3><div class="badges"><span class="badge green">⭐ Recomendado</span><span class="badge green">👨‍👩‍👧 Área infantil</span></div><a class="map-btn" target="_blank" href="https://maps.google.com/?q=NAU+Frutos+do+Mar+Natal+RN"><i class="fa-solid fa-location-dot"></i>Abrir no Maps</a></div>
+      <div class="card"><h3>Mangai — Lagoa Nova</h3><div class="badges"><span class="badge green">👨‍👩‍👧 Área infantil</span></div><a class="map-btn" target="_blank" href="https://maps.google.com/?q=Mangai+Lagoa+Nova+Natal+RN"><i class="fa-solid fa-location-dot"></i>Abrir no Maps</a></div>
+      <div class="card"><h3>Tábua de Carne — Via Costeira</h3><p>Preferencialmente durante o dia.</p><a class="map-btn" target="_blank" href="https://maps.google.com/?q=Tabua+de+Carne+Via+Costeira+Natal+RN"><i class="fa-solid fa-location-dot"></i>Abrir no Maps</a></div>
+      <div class="card"><h3>Tábua de Carne — Capim Macio</h3><p>Boa opção para noite.</p><a class="map-btn" target="_blank" href="https://maps.google.com/?q=Tabua+de+Carne+Capim+Macio+Natal+RN"><i class="fa-solid fa-location-dot"></i>Abrir no Maps</a></div>
+      <div class="card"><h3>Sal e Brasa</h3><p>Churrascaria.</p><a class="map-btn" target="_blank" href="https://maps.google.com/?q=Sal+e+Brasa+Natal+RN"><i class="fa-solid fa-location-dot"></i>Abrir no Maps</a></div>
+      <div class="card"><h3>Bidoca</h3><a class="map-btn" target="_blank" href="https://maps.google.com/?q=Bidoca+Natal+RN"><i class="fa-solid fa-location-dot"></i>Abrir no Maps</a></div>
+    </div>
+    <div class="back-top"><a href="#topo">↑ Voltar ao topo</a></div>
+  </div>
+</section>
+
+<section id="bares">
+  <div class="container">
+    <h2 class="section-title"><i class="fa-solid fa-martini-glass"></i>Bares e Restaurantes</h2>
+    <div class="grid">
+      <div class="card"><h3>Ô Bar — Ponta Negra</h3><div class="badges"><span class="badge green">👨‍👩‍👧 Área infantil</span></div><a class="map-btn" target="_blank" href="https://maps.google.com/?q=O+Bar+Ponta+Negra+Natal+RN"><i class="fa-solid fa-location-dot"></i>Abrir no Maps</a></div>
+      <div class="card"><h3>Old Five — Ponta Negra</h3><a class="map-btn" target="_blank" href="https://maps.google.com/?q=Old+Five+Ponta+Negra+Natal+RN"><i class="fa-solid fa-location-dot"></i>Abrir no Maps</a></div>
+      <div class="card"><h3>Taverna Pub — Ponta Negra</h3><a class="map-btn" target="_blank" href="https://maps.google.com/?q=Taverna+Pub+Ponta+Negra+Natal+RN"><i class="fa-solid fa-location-dot"></i>Abrir no Maps</a></div>
+      <div class="card"><h3>Páprika Pizzaria & Restaurante</h3><a class="map-btn" target="_blank" href="https://maps.google.com/?q=Paprika+Pizzaria+Natal+RN"><i class="fa-solid fa-location-dot"></i>Abrir no Maps</a></div>
+      <div class="card"><h3>Brasa's Food — Lagoa Nova</h3><div class="badges"><span class="badge green">👨‍👩‍👧 Área infantil</span></div><a class="map-btn" target="_blank" href="https://maps.google.com/?q=Brasas+Food+Lagoa+Nova+Natal+RN"><i class="fa-solid fa-location-dot"></i>Abrir no Maps</a></div>
+      <div class="card"><h3>Zumbi Bar</h3><div class="badges"><span class="badge green">👨‍👩‍👧 Área infantil</span></div><a class="map-btn" target="_blank" href="https://maps.google.com/?q=Zumbi+Bar+Natal+RN"><i class="fa-solid fa-location-dot"></i>Abrir no Maps</a></div>
+    </div>
+    <div class="back-top"><a href="#topo">↑ Voltar ao topo</a></div>
+  </div>
+</section>
+
+<section id="agencia">
+  <div class="container">
+    <div class="agency-box">
+      <h3>Passeios, Buggy, Mergulho e City Tour</h3>
+      <p>Agência indicada: <strong>Mar Azul</strong>.</p>
+      <div class="placeholder"> Agência de Turismo Local.</div>
+    </div>
+  </div>
+</section>
+
+<section id="dicas">
+  <div class="container">
+    <h2 class="section-title"><i class="fa-solid fa-lightbulb"></i>Dicas do Anfitrião</h2>
+    <div class="tips-grid">
+      <div class="tip"><i class="fa-solid fa-calendar-check"></i><span>Para passeios de buggy e mergulho, procure reservar com antecedência.</span></div>
+      <div class="tip"><i class="fa-solid fa-water"></i><span>Alguns passeios dependem da maré.</span></div>
+      <div class="tip"><i class="fa-solid fa-sun"></i><span>Para praias mais distantes, programe a saída pela manhã.</span></div>
+      <div class="tip"><i class="fa-solid fa-triangle-exclamation"></i><span>Em praias com mar bravo, respeite as orientações locais.</span></div>
+      <div class="tip"><i class="fa-solid fa-clock"></i><span>Para Pipa, vale reservar um dia inteiro.</span></div>
+      <div class="tip"><i class="fa-solid fa-circle-info"></i><span>Confirme horários de funcionamento antes de sair.</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="contato">
+  <div class="container">
+    <div class="contact-box">
+      <h3>Precisa de ajuda para escolher um passeio?</h3>
+      <p>Fale com o anfitrião. Será um prazer ajudar com algumas dicas.</p>
+      <a class="whatsapp-btn" href="https://wa.me/5584994882727" target="_blank"><i class="fa-brands fa-whatsapp"></i>Falar com o anfitrião</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <h3>Natal Verano Ponta Negra</h3>
+  <p>Guia Digital do Hóspede</p>
+  <p>Esperamos que aproveite Natal e tenha uma excelente estadia! ☀️🌴</p>
+</footer>
+
+</body>
+</html>
